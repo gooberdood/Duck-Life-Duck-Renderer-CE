@@ -1,0 +1,30 @@
+palettes:
+  - name: global_palette
+    fixed-entries:
+      - color: {index: 0, r: 255, g: 0, b: 255}
+      - color: {index: 1, r: 0, g: 0, b: 0}
+      - color: {index: 2, r: 255, g: 255, b: 255}
+      - color: {index: 3, r: 64, g: 96, b: 255}
+      - color: {index: 4, r: 255, g: 255, b: 0}
+      - color: {index: 5, r: 255, g: 210, b: 0}
+      - color: {index: 6, r: 0, g: 204, b: 255}
+    images: automatic
+
+converts:
+  - name: sprites
+    palette: global_palette
+    transparent-color-index: 0
+    compress: zx0
+    images:
+     - assets/seeds.png
+     - assets/superseeds.png
+     
+outputs:
+  - type: appvar
+    name: ducks
+    include-file: ducks.h
+    source-format: c
+    palettes:
+      - global_palette
+    converts:
+      - sprites
