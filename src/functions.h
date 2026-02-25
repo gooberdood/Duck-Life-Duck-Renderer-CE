@@ -14,6 +14,7 @@ extern int ankleRotation;
 extern int duckX;
 extern int duckY;
 extern int flyFrame;
+extern int headTurned;
 
 void getInput(void);
 void renderWindow(void);

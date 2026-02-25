@@ -23,16 +23,19 @@ int main(void) {
 	gfx_SwapDraw();
 	decompressSprites(); //decompressing spritezzz
 	
+	clock_t frameStart;
+	clock_t frameTime;
+	
 	//main loop
 	do {
-		clock_t frame_start = clock(); //starts frame timer
+		frameStart = clock(); //starts frame timer
 		
 		getInput(); //calls getInput function to, well, get input, and do stuff with said input
 		renderWindow(); //graphics rendering
 		
 		//waits until ~1/60th of a second (minus logic time) to render frame
-		clock_t frame_time = clock() - frame_start;
-		do {frame_time = clock() - frame_start;} while (frame_time < TARGET_FRAME_TIME);
+		frameTime = clock() - frameStart;
+		do {frameTime = clock() - frameStart;} while (frameTime < TARGET_FRAME_TIME);
 		
 	} while (running == true);
 	

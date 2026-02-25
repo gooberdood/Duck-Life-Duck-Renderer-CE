@@ -26,6 +26,7 @@ void initGfx(void) {
 	gfx_SetTransparentColor(0);
 	gfx_SetTextTransparentColor(0);
 	gfx_SetTextBGColor(0);
+	gfx_SetTextFGColor(1);
 	gfx_SetTextConfig(gfx_text_clip);
 }
 
@@ -75,6 +76,10 @@ void getInput(void) {
 		if (legRotation > 359) {legRotation = 0;}
 		if (footRotation < 0) {footRotation = 359;}
 		if (footRotation > 359) {footRotation = 0;}
+		if (duckX < 10) {duckX = 10;}
+		if (duckX > 310) {duckX = 310;}
+		if (duckY < 20) {duckY = 20;}
+		if (duckY > 220) {duckY = 220;}
 	}
 }
 
@@ -84,7 +89,8 @@ void renderWindow(void) {
 		gfx_FillScreen(3);
 		drawDuck(duckX, duckY, 4, headRotation, faceRotation, legRotation, footRotation, flyFrame);
 		
-		gfx_SetTextFGColor(1);
+		
+		
 		gfx_SetTextXY(1,1);
 		gfx_PrintString("Head rotation: ");
 		gfx_PrintInt(headRotation, 3);
