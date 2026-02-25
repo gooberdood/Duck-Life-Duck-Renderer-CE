@@ -3,9 +3,23 @@ This draws the duck from Duck Life on your TI-84+ CE using only shapes and math 
 Compiled with the CE C Toolchain. Must put both ducks.8xv and DUCKLIFE.8xp on the calculator. The controls are somewhat simple:
 
 Up, down: Rotate head position clockwise, counterclockwise
+
 Left, right: Rotate face angle counterclockwise, clockwise
+
 +, -: Rotate leg position clockwise, counterclockwise
+
 x, /: Rotate foot angle counterclockwise, clockwise
+
 8, 2, 4, 6: Move duck up, down, left, right
-Hold enter: fly animation
-2nd: Reset
+
+Hold [enter]: fly animation
+
+[2nd]: Reset
+
+Hold [Alpha]: Show coordinates and angles
+
+Hold [Mode]: Summon MORE DUCKS!
+
+A/[math]: ULTRA quality
+
+D/[x^-1]: LOW quality
