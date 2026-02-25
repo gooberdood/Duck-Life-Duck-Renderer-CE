@@ -15,6 +15,11 @@ extern int duckX;
 extern int duckY;
 extern int flyFrame;
 extern int headTurned;
+extern int gameQuality;
+extern int frameTimer;
+extern int framerateTimer;
+extern int showCoords;
+extern int stressTest;
 
 void getInput(void);
 void renderWindow(void);

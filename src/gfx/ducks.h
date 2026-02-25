@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#define sizeof_global_palette 28
+#define sizeof_global_palette 34
 #define global_palette (ducks_appvar[0])
 #define sprites_palette_offset 0
 #define seeds_width 20

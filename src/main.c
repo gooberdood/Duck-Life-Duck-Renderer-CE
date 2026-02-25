@@ -11,7 +11,7 @@
 #include "functions.h"
 
 //frame limit
-#define TARGET_FRAMERATE 60
+#define TARGET_FRAMERATE 30
 #define TARGET_FRAME_TIME (CLOCKS_PER_SEC / TARGET_FRAMERATE)
 
 int main(void) {

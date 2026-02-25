@@ -6,8 +6,8 @@
 unsigned char *ducks_appvar[3] =
 {
     (unsigned char*)0,
-    (unsigned char*)28,
-    (unsigned char*)108,
+    (unsigned char*)34,
+    (unsigned char*)114,
 };
 
 unsigned char ducks_init(void)

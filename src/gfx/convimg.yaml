@@ -8,6 +8,9 @@ palettes:
       - color: {index: 4, r: 255, g: 255, b: 0}
       - color: {index: 5, r: 255, g: 210, b: 0}
       - color: {index: 6, r: 0, g: 204, b: 255}
+      - color: {index: 7, r: 153, g: 102, b: 0}
+      - color: {index: 8, r: 255, g: 153, b: 0}
+      - color: {index: 9, r: 255, g: 0, b: 0}
     images: automatic
 
 converts:

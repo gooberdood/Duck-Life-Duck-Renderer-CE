@@ -16,6 +16,11 @@ int footRotation = 90;
 int duckX = 160;
 int duckY = 120;
 int flyFrame = 0;
+int gameQuality = 4;
+int frameTimer = 0;
+int framerateTimer = 0;
+int showCoords = false;
+int stressTest = false;
 
 //initialize gfx / set up
 void initGfx(void) {
@@ -25,7 +30,7 @@ void initGfx(void) {
     gfx_SetPalette(global_palette, sizeof_global_palette, 0);
 	gfx_SetTransparentColor(0);
 	gfx_SetTextTransparentColor(0);
-	gfx_SetTextBGColor(0);
+	gfx_SetTextBGColor(3);
 	gfx_SetTextFGColor(1);
 	gfx_SetTextConfig(gfx_text_clip);
 }
@@ -50,6 +55,8 @@ void getInput(void) {
 		if (kb_Data[5] & kb_6) {duckX++;}
 		if (kb_Data[4] & kb_8) {duckY--;}
 		if (kb_Data[4] & kb_2) {duckY++;}
+		if (kb_Data[2] & kb_Math) {gameQuality = 1;}
+		if (kb_Data[2] & kb_Recip) {gameQuality = 4;}
 		
 		if (kb_Data[1] & kb_2nd) {
 			headRotation = 10;
@@ -59,6 +66,10 @@ void getInput(void) {
 			duckX = 160;
 			duckY = 120;
 		}
+		if (kb_Data[2] & kb_Alpha) {showCoords = true;}
+		else {showCoords = false;}
+		if (kb_Data[1] & kb_Mode) {stressTest = true;}
+		else {stressTest = false;}
 		
 		if (kb_Data[6] & kb_Enter) {
 			flyFrame += 1;
@@ -87,34 +98,53 @@ void getInput(void) {
 void renderWindow(void) {
 	if (debugMode) {
 		gfx_FillScreen(3);
-		drawDuck(duckX, duckY, 4, headRotation, faceRotation, legRotation, footRotation, flyFrame);
+		drawDuck(gameQuality, duckX, duckY, 4, headRotation, faceRotation, legRotation, footRotation, flyFrame);
+		if (stressTest) {
+			drawDuck(gameQuality, 30, 60, 7, headRotation, faceRotation, legRotation, footRotation, flyFrame);
+			drawDuck(gameQuality, 60, 60, 8, headRotation, faceRotation, legRotation, footRotation, flyFrame);
+			drawDuck(gameQuality, 90, 60, 9, headRotation, faceRotation, legRotation, footRotation, flyFrame);
+		}
+		
+		if (showCoords) {
+			gfx_SetTextXY(1,1);
+			gfx_PrintString("Head rotation: ");
+			gfx_PrintInt(headRotation, 3);
+			gfx_SetTextXY(1,11);
+			gfx_PrintString("Face rotation: ");
+			gfx_PrintInt(faceRotation, 3);
+			gfx_SetTextXY(1,21);
+			gfx_PrintString("Leg rotation: ");
+			gfx_PrintInt(legRotation, 3);
+			gfx_SetTextXY(1,31);
+			gfx_PrintString("Foot rotation: ");
+			gfx_PrintInt(footRotation, 3);
+			gfx_SetTextXY(1,41);
+			gfx_PrintString("Duck X position: ");
+			gfx_PrintInt(duckX, 3);
+			gfx_SetTextXY(1,51);
+			gfx_PrintString("Duck Y position: ");
+			gfx_PrintInt(duckY, 3);
+			gfx_SetTextXY(1,61);
+			gfx_PrintString("Flying: ");
+			gfx_PrintInt((kb_Data[6] & kb_Enter), 1);
+			gfx_SetTextXY(1,71);
+			gfx_PrintString("Fly frame: ");
+			gfx_PrintInt(flyFrame, 1);
+			gfx_SetTextXY(1,81);
+			gfx_PrintString("Quality: ");
+			gfx_PrintString(qualityStrings[gameQuality]);
+		}
 		
 		
-		
-		gfx_SetTextXY(1,1);
-		gfx_PrintString("Head rotation: ");
-		gfx_PrintInt(headRotation, 3);
-		gfx_SetTextXY(1,11);
-		gfx_PrintString("Face rotation: ");
-		gfx_PrintInt(faceRotation, 3);
-		gfx_SetTextXY(1,21);
-		gfx_PrintString("Leg rotation: ");
-		gfx_PrintInt(legRotation, 3);
-		gfx_SetTextXY(1,31);
-		gfx_PrintString("Foot rotation: ");
-		gfx_PrintInt(footRotation, 3);
-		gfx_SetTextXY(1,41);
-		gfx_PrintString("Duck X position: ");
-		gfx_PrintInt(duckX, 3);
-		gfx_SetTextXY(1,51);
-		gfx_PrintString("Duck Y position: ");
-		gfx_PrintInt(duckY, 3);
-		gfx_SetTextXY(1,61);
-		gfx_PrintString("Flying: ");
-		gfx_PrintInt((kb_Data[6] & kb_Enter), 1);
-		gfx_SetTextXY(1,71);
-		gfx_PrintString("Fly frame: ");
-		gfx_PrintInt(flyFrame, 1);
+		frameTimer += 1;
+		if (frameTimer == 30) {
+			frameTimer = 1;
+			framerateTimer += 1;
+		}
+		gfx_SetTextXY(1,220);
+		gfx_PrintInt(frameTimer, 2);
+		gfx_PrintString(" | ");
+		gfx_PrintInt(framerateTimer, 1);
 		
 		gfx_SwapDraw();
 	}
